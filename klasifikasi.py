@@ -4,9 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
 
-filepath_dict = {'yelp':   'data/yelp.txt',
-                 'amazon': 'data/amazon.txt',
-                 'imdb':   'data/imdb.txt'}
+filepath_dict = {'yelp':   'data/yelp.txt'}
 
 df_list = []
 for source, filepath in filepath_dict.items():
@@ -21,7 +19,7 @@ for source in df['source'].unique():
     sentences = df_source['sentence'].values
     y = df_source['label'].values
 
-    sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.25, random_state=1000)
+    sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.2, random_state=1000)
 
     vectorizer = CountVectorizer()
     vectorizer.fit(sentences_train)
@@ -30,7 +28,9 @@ for source in df['source'].unique():
 
 #------------------------------------------------------------
 
+
+
 classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 print("\n \n hasil \n -----------------------\n")
-print(classifier.predict(vectorizer.transform(['hai im good'])))
+print(classifier.predict(vectorizer.transform(['hai baik'])))
