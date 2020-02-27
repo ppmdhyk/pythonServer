@@ -1,14 +1,19 @@
 import mysql.connector
+import os
 import pandas as pd
+
+from dotenv import load_dotenv
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
+load_dotenv()
+
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="",
-  database="saran"
+  host=os.getenv('DB_HOST'),
+  user=os.getenv('DB_USER'),
+  passwd=os.getenv('DB_PASSWORD'),
+  database=os.getenv('DB_DATABASE')
 )
 
 df= pd.read_sql_query("select saran as sentence, topik as label from saran where topik is not null", mydb)
@@ -40,8 +45,3 @@ sql = f"UPDATE saran SET topik='{topik}' WHERE id='{idnum}'"
 stuff = [topik, idnum]
 cur.execute(sql)
 mydb.commit()
-print()
-print(sql)
-
-for a in df['topik'].values.item
-  print(a)
