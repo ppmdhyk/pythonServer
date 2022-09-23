@@ -4,7 +4,7 @@ joblib==0.14.1
 mysql-connector-python==8.0.19
 numpy==1.18.1
 pandas==1.0.1
-protobuf==3.6.1
+protobuf==3.18.3
 python-dateutil==2.8.1
 python-dotenv==0.11.0
 pytz==2019.3
